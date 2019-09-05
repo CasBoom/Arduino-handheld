@@ -151,11 +151,13 @@ class Ball{
     //checks if the ball has hit any vertical walls
     if(x==0 || x==field_width-1){
       x_speed=x_speed*-1;
+      sound.on();
     }
 
     //checks if the ball has hit the paddle or any horizontal walls 
-    else if(y==0 || y==field_height-2 && x>=paddle_x && x<paddle_width+paddle_x){
+    if(y==0 || y==field_height-2 && x>=paddle_x && x<paddle_width+paddle_x){
       y_speed=y_speed*-1;
+      sound.on();
     }
 
     if(y>field_height-2){
@@ -242,7 +244,8 @@ void loop() {
   //updates the positions of the entities
   game.update();
   game.create_frame();
-  
+  Serial.println(game.ball.y);
+  Serial.println(game.ball.x);
   
   delay(500);
 }
